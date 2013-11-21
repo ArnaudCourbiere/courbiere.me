@@ -1,0 +1,15 @@
+{
+    "name": "courbiere.me",
+    "version": "0.0.1",
+    "author": "Arnaud Courbiere <arnaud.courbiere@gmail.com>",
+    "main": "index",
+    "dependencies": {
+        "connect": "*",
+        "routes": "*",
+        "ejs": "*"
+    },
+    "devDependencies": {},
+    "scripts": {
+    },
+    "engines": { "node": "*" }
+}
