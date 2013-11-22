@@ -1,6 +1,6 @@
 var config = require('./config.js');
 var router = require('./router.js');
-var decorator = require('./decorator.js');
+var view = require('./view.js');
 var connect = require('connect');
 var app = connect()
     .use(connect.favicon(config.favicon))
@@ -8,13 +8,13 @@ var app = connect()
     .use(connect.static(config.publicDir))
     .use(connect.cookieParser())
     .use(connect.session({ secret: config.sessionSecret }))
-    .use(decorator)
+    .use(view({ engine: config.views.engine, root: config.views.root }))
     .use(router);
 
 if (!module.parent) {
     require('http')
         .createServer(app)
-        .listen(config.port, config.ip);
+        .listen(config.server.port, config.server.ip);
 } else {
     module.exports.app = app;
 }
