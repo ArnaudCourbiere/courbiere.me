@@ -1,7 +1,6 @@
 var config = require('./config.js');
 var router = require('./router.js');
 var decorator = require('./decorator.js');
-var http = require('http');
 var connect = require('connect');
 var app = connect()
     .use(connect.favicon(config.favicon))
@@ -12,5 +11,11 @@ var app = connect()
     .use(decorator)
     .use(router);
 
-http.createServer(app).listen(config.port, config.ip);
+if (!module.parent) {
+    require('http')
+        .createServer(app)
+        .listen(config.port, config.ip);
+} else {
+    module.exports.app = app;
+}
 
