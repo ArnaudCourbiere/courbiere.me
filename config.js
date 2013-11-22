@@ -1,5 +1,5 @@
 exports = module.exports = {
-    env: process.env.NODE_ENV || 'dev', // use process.ENV?
+    env: process.env.NODE_ENV || 'dev',
     favicon: 'public/favicon.ico',
     publicDir: 'public',
     sessionSecret: 'arnaud',
