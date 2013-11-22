@@ -2,13 +2,24 @@
     "name": "courbiere.me",
     "version": "0.0.1",
     "author": "Arnaud Courbiere <arnaud.courbiere@gmail.com>",
-    "main": "index",
+    "scripts": {
+        "start": "node ./index.js",
+        "test": "nodeunit ./tests",
+        "predeploy": "",
+        "postdeploy": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ArnaudCourbiere/courbiere.me"
+    },
     "dependencies": {
         "connect": "*",
         "routes": "*",
         "ejs": "*"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "nodeunit": "*"
+    },
     "scripts": {
     },
     "engines": { "node": "*" }

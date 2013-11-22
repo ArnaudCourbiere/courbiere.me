@@ -12,4 +12,4 @@ var app = connect()
     .use(decorator)
     .use(router);
 
-http.createServer(app).listen(3000);
+http.createServer(app).listen(process.env.PORT, process.env.IP);
