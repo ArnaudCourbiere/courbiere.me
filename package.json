@@ -4,9 +4,7 @@
     "author": "Arnaud Courbiere <arnaud.courbiere@gmail.com>",
     "scripts": {
         "start": "node ./index.js",
-        "test": "nodeunit ./tests",
-        "predeploy": "",
-        "postdeploy": ""
+        "test": "nodeunit ./tests"
     },
     "repository": {
         "type": "git",
@@ -19,8 +17,6 @@
     },
     "devDependencies": {
         "nodeunit": "*"
-    },
-    "scripts": {
     },
     "engines": { "node": "*" }
 }
