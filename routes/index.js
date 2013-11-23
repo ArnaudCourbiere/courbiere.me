@@ -1,3 +1,4 @@
 exports = module.exports = function (req, res) {
-    res.end("Index page\n");
+    res.render('index.html');
+    //res.end("Index page\n");
 };

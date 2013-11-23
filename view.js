@@ -1,16 +1,20 @@
 exports = module.exports = function (options) {
     options = options || {};
-    var engine = options.engine || 'ejs';
+    var engine = require(options.engine || 'ejs').__express;
     var root = options.root || process.cwd() + '/views';
     
-    return function (req, res, next) {
+    console.log(root);
+    
+    return function view(req, res, next) {
         res.render = function (path, options, fn) {
-            engine(path, options, function (err, str) {
+            options = options || {};
+            
+            engine(root + '/' + path, options, function renderView(err, str) {
                 if (err) {
                     // TODO
                 }
                 
-                res.send(str);
+                res.end(str);
             });
         };
     

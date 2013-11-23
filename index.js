@@ -7,6 +7,7 @@ var app = connect()
     .use(connect.logger(config.env))
     .use(connect.static(config.publicDir))
     .use(connect.cookieParser())
+    .use(connect.bodyParser())
     .use(connect.session({ secret: config.sessionSecret }))
     .use(view({ engine: config.views.engine, root: config.views.root }))
     .use(router);
