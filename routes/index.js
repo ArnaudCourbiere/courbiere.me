@@ -1,4 +1,4 @@
-exports = module.exports = function (req, res) {
+exports = module.exports = function (req, res, next) {
+    //throw { status: 404, message: 'Page not found.' };
     res.render('index.html');
-    //res.end("Index page\n");
 };
