@@ -15,7 +15,7 @@ var app = connect()
     .use(connect.json())
     .use(connect.session({ secret: config.sessionSecret }))
     .use(view({ engine: config.views.engine, root: config.views.root }))
-    .use(router())
+    .use(router({ routeDir: config.routeDir }))
     .use(errorHandler());
 
 if (!module.parent) {
