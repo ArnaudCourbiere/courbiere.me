@@ -1,7 +1,8 @@
 var Routes = require('routes');
 var routes = Routes();
+var routeDir = process.cwd() + '/routes/';
 
-routes.addRoute('/', require(process.cwd() + '/routes/index.js'));
+routes.addRoute('/', require(routeDir + 'index.js'));
 
 exports = module.exports = function router() {
     return function router(req, res, next) {
