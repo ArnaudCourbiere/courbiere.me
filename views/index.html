@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-<<<<<<< HEAD
+        <link rel="stylesheet" type="text/css" href="/css/reset.css">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
     <body>
@@ -14,62 +14,41 @@
             </ul>
         </nav>
         -->
-        <div class="phone">
-            <div class="dock"></div>
+        <div id="phone">
+            <div id="dock"></div>
         </div>
         
-        <script type="text/javascript" src="/js/dojo.js" data-dojo-config="async: true"></script>
-        <script type="text/javascript">
-        define([
-            // The dojo/dom module is required by this module, so it goes
-            // in this list of dependencies.
-            "dojo/dom"
-        ], function(dom){
-            // Once all modules in the dependency list have loaded, this
-            // function is called to define the demo/myModule module.
-            //
-            // The dojo/dom module is passed as the first argument to this
-            // function; additional modules in the dependency list would be
-            // passed in as subsequent arguments.
-         
-            var oldText = {};
-         
-            // This returned object becomes the defined value of this module
-            return {
-                setText: function(id, text){
-                    var node = dom.byId(id);
-                    oldText[id] = node.innerHTML;
-                    node.innerHTML = text;
-                },
-                restoreText: function(id){
-                    var node = dom.byId(id);
-                    node.innerHTML = oldText[id];
-                    delete oldText[id];
-                }
-            };
-        });
+        <script>
+            var dojoConfig = { async: true };
         </script>
-=======
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="description" content="Arnaud Courbiere's personal website">
-        <link rel="stylesheet" type="text/css" href="/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="/css/theme.css">
-        <title>courbiere.me</title>
-    </head>
-    <body>
-        <header id="banner" class="body">
-            <h1><a href="#">Hello</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </nav>
-        </header>
-        <section class="body">
-            <h1>Helloooo</h1>
-        </section>
-        <footer class="body"></footer>
->>>>>>> origin/development
+        <script src="/js/lib/dojo.js"></script>
+        <script>
+            require(['src/util', 'dojo/on', 'dojo/dom', 'dojo/query', 'dojo/domReady!'],
+                function bootstrap (util, on, dom, query) {
+                    var dock = dom.byId('dock');
+                    var body = query('body');
+                    var down = false;
+                    
+                    on(dock, 'mousedown', function mousedown (event) {
+                        down = true;
+                        console.log('mousedown');
+                        util.cancelEvent(event);
+                    });
+                    on(body, 'mousemove', function mousemove (event) {
+                        if (down === true) {
+                            console.log(event);
+                        }
+                        
+                        util.cancelEvent(event);
+                    });
+                    on(body, 'mouseup', function mouseup (event) {
+                        down = false;
+                        console.log('mouseup');
+                        util.cancelEvent(event);
+                    });
+                }
+            );
+
+        </script>
     </body>
 </html>
