@@ -1,9 +1,52 @@
 <!doctype html>
 <html>
     <head>
-        <title>courbiere.me</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
     <body>
-        <h1>Helloooo</h1>
+        <!--
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+        -->
+        <div class="phone">
+            <div class="dock"></div>
+        </div>
+        
+        <script type="text/javascript" src="/js/dojo.js" data-dojo-config="async: true"></script>
+        <script type="text/javascript">
+        define([
+            // The dojo/dom module is required by this module, so it goes
+            // in this list of dependencies.
+            "dojo/dom"
+        ], function(dom){
+            // Once all modules in the dependency list have loaded, this
+            // function is called to define the demo/myModule module.
+            //
+            // The dojo/dom module is passed as the first argument to this
+            // function; additional modules in the dependency list would be
+            // passed in as subsequent arguments.
+         
+            var oldText = {};
+         
+            // This returned object becomes the defined value of this module
+            return {
+                setText: function(id, text){
+                    var node = dom.byId(id);
+                    oldText[id] = node.innerHTML;
+                    node.innerHTML = text;
+                },
+                restoreText: function(id){
+                    var node = dom.byId(id);
+                    node.innerHTML = oldText[id];
+                    delete oldText[id];
+                }
+            };
+        });
+        </script>
     </body>
 </html>
