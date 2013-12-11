@@ -2,8 +2,8 @@ exports = module.exports = {
     env: process.env.NODE_ENV || 'dev',
     appDir: process.env.APP_DIR || __dirname,
     routeDir: process.env.ROUTE_DIR || __dirname + '/routes/',
-    favicon: 'public/favicon.ico',
-    publicDir: 'public',
+    favicon: __dirname + '/public/favicon.ico',
+    publicDir: __dirname + '/public',
     sessionSecret: 'arnaud',
     views: {
         engine: 'ejs',
