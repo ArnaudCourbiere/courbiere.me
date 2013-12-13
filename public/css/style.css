@@ -50,15 +50,17 @@ body {
 #phone {
     width: 300px;
     height: 589px;
+    /*
     float: right;
     position: relative;
-    /*
+    */
+
     margin: auto;
     position: absolute;
     top: 30px;
     left: 0;
     right: 0;
-    */
+
     background: url('/images/Nexus5.png') no-repeat;
 }
 
