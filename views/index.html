@@ -14,8 +14,19 @@
             </ul>
         </nav>
         -->
-        <div id="phone">
-            <div id="dock"></div>
+        <div id="container">
+            <div id="title">D...</div>
+            <div id="phone">
+                <div id="screen">
+                    <div id="drag-handle"></div>
+                    <div id="dock">
+                        <div class="dock-item gmail-item"></div>
+                        <div class="dock-item hangout-item"></div>
+                        <div class="dock-item chrome-item"></div>
+                        <div class="dock-item calculator-item"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <script>
@@ -23,29 +34,66 @@
         </script>
         <script src="/js/lib/dojo.js"></script>
         <script>
-            require(['src/util', 'dojo/on', 'dojo/dom', 'dojo/query', 'dojo/domReady!'],
-                function bootstrap (util, on, dom, query) {
+            require(['src/util', 'dojo/on', 'dojo/dom', 'dojo/dom-geometry', 'dojo/dom-style', 'dojo/_base/fx', 'dojo/domReady!'],
+                function bootstrap (util, on, dom, domGeo, domStyle, fx) {
+                    var screen = dom.byId('screen');
+                    var dragHandle = dom.byId('drag-handle');
                     var dock = dom.byId('dock');
-                    var body = query('body');
                     var down = false;
+                    var dockGeo = domGeo.position(dock);
+                    var dockCurrentWidth = dockGeo.w;
+                    var initialX = 0;
                     
-                    on(dock, 'mousedown', function mousedown (event) {
+                    var mouseDownHandler = function (event) {
                         down = true;
-                        console.log('mousedown');
+                        initialX = event.x;
+                        initialY = event.y;
+                        
                         util.cancelEvent(event);
-                    });
-                    on(body, 'mousemove', function mousemove (event) {
+                    };
+                    
+                    var mouseMoveHandler = function (event) {
                         if (down === true) {
-                            console.log(event);
+                            dockCurrentWidth -= event.x - initialX;
+                            
+                            if (dockCurrentWidth < 0) {
+                                dockCurrentWidth = 0;
+                            } else if (dockCurrentWidth > dockGeo.w) {
+                                dockCurrentWidth = dockGeo.w;
+                            }
+                            
+                            domStyle.set(dock, 'width', dockCurrentWidth + 'px');
+                            domStyle.set(dragHandle, 'right', dockCurrentWidth + 'px');
+                            
+                            initialX = event.x;
                         }
                         
                         util.cancelEvent(event);
-                    });
-                    on(body, 'mouseup', function mouseup (event) {
+                    };
+                    
+                    var mouseUpHandler = function (event) {
                         down = false;
-                        console.log('mouseup');
+                        initialX = 0;
+                        var targetWidth = dockCurrentWidth > dockGeo.w / 2 ? dockGeo.w : 0;
+                        
+                        fx.animateProperty({
+                            node: 'dock',
+                            properties: {
+                                width: targetWidth
+                            },
+                            onEnd: function () {
+                                domStyle.set(dragHandle, 'right', targetWidth + 'px');
+                                dockCurrentWidth = targetWidth;
+                            }
+                        }).play();
+                        
                         util.cancelEvent(event);
-                    });
+                    };
+                    
+                    on(dock, 'mousedown', mouseDownHandler);
+                    on(dragHandle, 'mousedown', mouseDownHandler);
+                    on(screen, 'mousemove', mouseMoveHandler);
+                    on(window, 'mouseup', mouseUpHandler);
                 }
             );
 
