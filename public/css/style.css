@@ -8,43 +8,9 @@ a {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Baskerville, "Playfair Display", "Times New Roman", serif;
     font-weight: lighter;
     color: #292929;
-    font-size: 250px;
-}
-
-.main-nav {
-    font-size: 40px;
-    width: 250px;
-    margin: 30px 200px 10px 30px;
-    padding: 5px;
-    box-shadow: 1px 1px 4px #888;
-    border-radius: 1px;
-    transition: all 0.2s;
-}
-
-.main-nav:hover {
-    background: #fbfbfb;
-    color: #000;
-    box-shadow: 1px 1px 6px #555;
-    -webkit-transform: rotate(7deg);
-}
-
-#container {
-    width: 900px;
-    height: 589px;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-
-#title {
-    margin-top: 150px;
-    float: left;
 }
 
 #phone {
@@ -57,9 +23,10 @@ body {
 
     margin: auto;
     position: absolute;
-    top: 30px;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
 
     background: url('/images/Nexus5.png') no-repeat;
 }
@@ -74,15 +41,6 @@ body {
     overflow: hidden;
 }
 
-#drag-handle {
-    /* background: #555; */
-    position: absolute;
-    top: 66px;
-    right: 65px;
-    width: 15px;
-    height: 280px;
-}
-
 #dock {
     width: 65px;
     height: 280px;
@@ -92,6 +50,8 @@ body {
     top: 66px;
     right: 0px;
     box-shadow: -2px 2px 6px #505050;
+    -moz-box-shadow: -2px 2px 6px #505050;
+    -webkit-box-shadow: -2px 2px 6px #505050;
 }
 
 .dock-item {
