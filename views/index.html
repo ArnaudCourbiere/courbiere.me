@@ -28,11 +28,16 @@
                     var dockGeo = domGeo.position(dock);
                     var dockCurrentWidth = dockGeo.w;
                     var initialX = 0;
+                    var currentAnimation = null;
                     
                     var mouseDownHandler = function (event) {
                         down = true;
                         initialX = event.x ? event.x : event.clientX;
                         initialY = event.y ? event.y : event.clientY;
+                        
+                        if (currentAnimation !== null) {
+                            currentAnimation.stop();
+                        }
                         
                         util.cancelEvent(event);
                     };
@@ -60,15 +65,18 @@
                         initialX = 0;
                         var targetWidth = dockCurrentWidth > dockGeo.w / 2 ? dockGeo.w : 0;
                         
-                        fx.animateProperty({
+                        currentAnimation = fx.animateProperty({
                             node: 'dock',
                             properties: {
                                 width: targetWidth
                             },
                             onEnd: function () {
                                 dockCurrentWidth = targetWidth;
+                                currentAnimation = null;
                             }
                         }).play();
+                        
+                        console.log(animation);
                         
                         util.cancelEvent(event);
                     };
